@@ -1,100 +1,18 @@
 import random
+import art
+from words import words_list
 
-print(
-    """
- _                                             
-| |                                            
-| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
-| '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
-| | | | (_| | | | | (_| | | | | | | (_| | | | |
-|_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
-                    __/ |                      
-                   |___/ 
-"""
-)
+print(art.hangman)
 
-stages = [
-    """
- _______
- |/    |
- |     O
- |    /|\\
- |    / \\
- |
- |___
 
-""",
-    """
- _______
- |/    |
- |     O
- |    /|\\
- |    / 
- |
- |___
-
-""",
-    """
- _______
- |/    |
- |     O
- |    /|\\
- |    
- |
- |___
-
-""",
-    """
- _______
- |/    |
- |     O
- |    /|
- |    
- |
- |___
-
-""",
-    """
- _______
- |/    |
- |     O
- |     |
- |    
- |
- |___
-
-""",
-    """
- _______
- |/    |
- |     O
- |    
- |    
- |
- |___
-
-""",
-    """
- _______
- |/    |
- |     
- |    
- |    
- |
- |___
-
-""",
-]
-
-word_list = ["Drunk", "In", "Love"]
-chosen_word = random.choice(word_list).lower()
+chosen_word = random.choice(words_list).lower()
 word_length = len(chosen_word)
 lives = 6
 
 display = []
 for _ in range(word_length):
     display.append("_")
-print(display)
+print(f"{' '.join(display).upper()}")
 
 while "_" in display and lives > 0:
     guess = input("Guess A letter: ").lower()
@@ -107,9 +25,9 @@ while "_" in display and lives > 0:
         lives -= 1
 
     print(f"{' '.join(display).upper()}")
-    print(stages[lives])
+    print(art.stages[lives])
 
     if "_" not in display:
-        print("Game Won!")
+        print("GAME WON!")
     if lives == 0:
-        print("Game Lost")
+        print("GAME LOST!")
