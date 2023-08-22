@@ -1,6 +1,13 @@
 import random
+import os
 from art import hangman, stages
 from words import words_list
+
+
+# Custom terminal clearing function to help UX
+def clear():
+    os.system("cls" if os.name == "nt" else "clear")
+
 
 # Display Game name
 print(hangman)
@@ -20,6 +27,8 @@ print(f"{' '.join(display).upper()}")
 # Game Logic
 while "_" in display and lives > 0:
     guess = input("Guess A letter: ").lower()
+
+    clear()
     # If guess is wrong
     if guess not in chosen_word and guess not in wrong_letters_guessed:
         lives -= 1
